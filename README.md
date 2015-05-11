@@ -1,2 +1,2 @@
 # AUT2015FantasticFour
-software engineering assignment 1b 
+Software Engineering Assignment 1b 
