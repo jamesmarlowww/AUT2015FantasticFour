@@ -1,17 +1,33 @@
 <!Doctype html>
+
 <head>
-<title>SERLER</title>
+
+<title>Request Logon</title>
+
 <link href="design.css" rel="stylesheet">
+
 </head>
+
 <!--Includes header section-->
+<h1> Request Logon </h1>
+
 <?php include "headersection.php" ?>
+
 <body>
+
 <div id="main">
+<p> Please complete the form to submit request </p>
 
 <form action = "search.php" method = "post">
 
+
+
 <input type="text" maxlength="20" name="keyword" /></p><br>
 
+
+
 </div>
+
 </body>
+
 </html>
