@@ -1,3 +1,4 @@
+
 body{
  	font: "Trebuchet MS", Verdana, sans-serif;
  	background-color: #ffffff;
@@ -49,15 +50,18 @@ ul#menu li a:hover{
     	width:100px;
     	float:right;
     	padding:30px;
+	margin-right: 100px;
 } 
 #requestlogon {
-	line-height:20px;
+	line-height:1px;
    	background-color:#5882FA;
-    	height:50px;
+    	height:25px;
     	width:210px;
     	float:right;
     	padding:20px;
+	margin-right: 50px;
 } 
 
 
 
+ 
