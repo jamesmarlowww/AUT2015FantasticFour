@@ -8,15 +8,15 @@
 
 </head>
 
-<!--Includes header section-->
-<h1> Request Logon </h1>
+<!--This is the creation of the header that is applied to ALL pages-->
 
-<?php include "headersection.php" ?>
+<?php include "header.php" ?>
 
 <body>
 
 <div id="main">
-<p> Please complete the form to submit request </p>
+
+
 
 <form action = "search.php" method = "post">
 
@@ -31,3 +31,4 @@
 </body>
 
 </html>
+
