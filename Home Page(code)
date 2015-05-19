@@ -8,6 +8,10 @@
 <body>
 <div id="main">
 
+<form action = "search.php" method = "post">
+
+<input type="text" maxlength="5" name="statusCode" value="S" /></p><br>
+
 </div>
 </body>
 </html>
