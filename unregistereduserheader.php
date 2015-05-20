@@ -1,4 +1,4 @@
-<!--This is the creation of the header that is applied to ALL pages-->
+<!--This is the creation of the header that is applied to all the pages for unregistered users-->
 <div id="header">
 <h1>SERLER </h1>
 <h3>SERL Evidence Repository</h3>
