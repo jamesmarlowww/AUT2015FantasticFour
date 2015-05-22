@@ -2,7 +2,7 @@
 
 <head>
 
-<title>Request Logon</title>
+<title>About</title>
 
 <link href="style.css" rel="stylesheet">
 
