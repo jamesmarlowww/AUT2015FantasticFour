@@ -8,7 +8,7 @@
 </head>
 
 <!--This is the header -->
-<?php include "header.php" ?>
+<?php include "registereduserheader.php" ?>
 <body>
 	
 	
