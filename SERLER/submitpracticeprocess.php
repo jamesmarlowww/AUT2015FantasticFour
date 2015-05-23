@@ -103,7 +103,7 @@
 		(checkEvidenceisNotNull($evidence) == TRUE) &&
 		(checkWhyisNotNull($why) == TRUE) &&
 		(checkTitleisNotNull$what == null)
-		///
+		///still working on this part
 		
 	{
  		// display a success message
