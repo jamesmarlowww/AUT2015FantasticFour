@@ -2,7 +2,7 @@
 
 <head>
 
-<title>Submit Practice</title>
+<title>Request Logon</title>
 
 <link href="style.css" rel="stylesheet">
 
