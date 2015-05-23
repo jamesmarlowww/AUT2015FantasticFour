@@ -9,6 +9,7 @@ body{
  	padding: 30px;
  	background-color: #ffffff;
  	border-radius: 0 0 4px 4px;
+	text-align:left;
  }
 h1{
  	font: Georgia, serif;

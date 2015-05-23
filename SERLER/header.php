@@ -12,4 +12,6 @@
  <li><a href="submitpracticeform.php">Search</a></li>
  <!--Link to the about page-->
  <li><a href="about.php">About</a></li> 
+ <!--Link to the submit practice page-->
+ <li><a href="submitpractice.php">Submit Practice</a></li> 
  </ul> 
