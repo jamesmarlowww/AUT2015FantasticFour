@@ -8,7 +8,11 @@
 </head>
 
 <!--This is the header -->
+<<<<<<< HEAD
 <?php include "registereduserheader.php" ?>
+=======
+<?php include "header.php" ?>
+>>>>>>> origin/working-branch
 <body>
 	
 	
