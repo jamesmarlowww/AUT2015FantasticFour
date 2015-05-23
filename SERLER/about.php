@@ -2,7 +2,7 @@
 
 <head>
 
-<title>Request Logon</title>
+<title>About</title>
 
 <link href="style.css" rel="stylesheet">
 
@@ -10,11 +10,11 @@
 
 <!--This is the creation of the header that is applied to ALL pages-->
 
-<?php include "header.php" ?>
+<?php include "registereduserheader.php" ?>
 
 <body>
 
-<div id="main" style="width:650px; margin:auto;">
+<div id="main" style="width:650px; margin:left;">
 
 <p>(SERLER = SERL Evidence Repository. SERL = Software Engineering Research Lab at AUT)</p>
 <p>Brief Description of Application</p>
