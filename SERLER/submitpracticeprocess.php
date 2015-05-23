@@ -28,26 +28,32 @@
 	$benefitsAndOutcomes =$POST["benefitsAndOutcomes"];
 	// Variablethat contains the results of the practice
 	$results =$POST["results"];
+	
 	// Function that returns true if the title is not null, and false if it is null.
 	function checkTitleisNotNull($stri){
 	if(!$stri == ''){
  		return TRUE;}}
+	
 	// Function that returns true if the descriptionis not null, and false if it is null.
 	function checkDescriptionisNotNull($stri){
 	if(!$stri == ''){
  		return TRUE;}}
+	
 	// Function that returns true if the evidence is not null, and false if it is null.
 	function checkEvidenceisNotNull($stri){
 	if(!$stri == ''){
  		return TRUE;}}
+	
 	// Function that returns true if the why is not null, and false if it is null.
 	function checkWhyisNotNull($stri){
 	if(!$stri == ''){
  		return TRUE;}}
+	
 	// Function that returns true if the what is not null, and false if it is null.
 	function checkWhatisNotNull($stri){
 	if(!$stri == ''){
  		return TRUE;}}
+	
 	// Function that returns true if the how is not null, and false if it is null.
 	function checkHowisNotNull($stri){
 	if(!$stri == ''){
@@ -57,6 +63,7 @@
 	function checkBenefitsAndOutcomesisNotNull($stri){
 	if(!$stri == ''){
  		return TRUE;}}
+	
 	// Function that returns true if the results is not null, and false if it is null.
 	function checkResultsisNotNull($stri){
 	if(!$stri == ''){
@@ -95,30 +102,58 @@
 						."(Title, Description, Evidence, Why, What, How, BenefitsAndOutcomes, Results)"
 					." values "
 						."('$title', '$desciption', '$evidence', '$why','$what', '$how','$benefitsAndOutcomes', '$results')";
-	// A conditional statement to check that all the requirements of a prsctice is meet.
 	
+	
+	//conditional statement 
 	if(
 		(checkTitleisNotNull($title) == TRUE) &&
-		(checkDescriptionisNotNull($title) == TRUE) &&
+		(checkDescriptionisNotNull($description) == TRUE) &&
 		(checkEvidenceisNotNull($evidence) == TRUE) &&
 		(checkWhyisNotNull($why) == TRUE) &&
-		(checkTitleisNotNull$what == null)
-		///still working on this part
-		
+		(checkWhatisNotNull($what) == TRUE)&&
+		(checkHowisNotNull($how) == TRUE)&&
+		(checkBenefitsAnsOutcomesisNotNull($benefitsAndOutcomes) == TRUE)&&
+		(checkResultsisNotNull($results) == TRUE))
 	{
  		// display a success message
 		echo "<p><center>Your practice was successfully submitted for review.</center></p>";
 		$theTableResult = mysqli_query($link, $tableQuery);
 		if(!$theTableResult) {
-		} else {
-			// display a success message
-			echo "<p><center>Thank you for submitting your practice.</center></p>";}
+			} else {
+				// display a success message
+				echo "<p><center>Thank you for submitting your practice.</center></p>";}
 		}else{
-			// display an error message when a practice requirement is not met 
+			// display an error message when practice requirement is not met 
 			echo "<p>ERROR cannot submit your pratice:</p>";}
- 
- 		
-	
+			
+ 		//Conditional statements
+		if(checkTitleisNotNull($title) == FALSE){
+			echo "<p>The title must not be null</p>"
+		}	
+		if(checkDescriptionisNotNull($description) == FALSE){
+			echo "<p>The description must not be null</p>"
+		}	
+		if(checkEvidenceisNotNull($evidence) == FALSE){
+			echo "<p>The evidence must not be null</p>"
+		}
+		if(checkWhyisNotNull($why) == FALSE){
+			echo "<p>The why practice was use must not be null</p>"
+		}
+		if(checkWhatisNotNull($what) == FALSE){
+			echo "<p>The what was the practice use must not be null</p>"
+		}
+		if(checkHowisNotNull($how) == FALSE){
+			echo "<p>The how the practice was use must not be null</p>"
+		}
+		if(checkBenefitsAndOutcomesisNotNull($description) == FALSE){
+			echo "<p>The Benefits and outcomes must not be null</p>"
+		}
+		if(checkResultsisNotNull($results) == FALSE){
+			echo "<p>The results of the practice must not be null</p>"
+		}
+		
+
+
  			// close the database connection
  			mysqli_close($link);
  	?>
