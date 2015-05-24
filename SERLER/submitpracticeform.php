@@ -17,13 +17,13 @@
 <div id="main" style="width:500px; margin:auto;">
 
 
-<form action = "submitpracticeprocess.php" method = "post">
+<form action = "submitpracticeprocess.php" method = "POST">
 
 <!--User inputs title-->
 <p> Title: <input type="text" maxlength="50" name="title" /></p>
 
 <!--User inputs description-->
-<p> Description: <input type="text" maxlength="300" name="desciption" /></p>
+<p> Description: <input type="text" maxlength="300" name="description" /></p>
 
 <!--User inputs evidences-->
 <p> Evidence/s: <input type="text" maxlength="1000" name="evidences" /></p>

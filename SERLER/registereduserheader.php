@@ -1,6 +1,6 @@
-<!--This is the creation of the header that is applied to all pages for registered user-->
+<!--This is the creation of the header that is applied to all pages for registered user--><head>
 
-<head>
+
 <div id="header">
 <h1>SERLER </h1>
 <h3>SERL Evidence Repository</h3>
@@ -27,7 +27,7 @@
 	<!--Link to the saved searches page-->
 	<li><a href="savedsearches.php">My Saved Searches</a></li> 
 	<!--Link to the submit page-->
-	<li><a href="submitpracticeform.html">Sumit Practice</a></li>
+	<li><a href="submitpracticeform.php">Sumit Practice</a></li>
 	<!--Link to the my practices page-->
 	<li><a href="mypractices.php">My Practices</a></li> 
 	<!--Link to the my account page-->
