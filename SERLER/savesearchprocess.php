@@ -31,14 +31,15 @@
 	if(!$table) {
 		$sql = "CREATE TABLE IF NOT EXISTS searchsave(
  		savename VARCHAR(50) NOT NULL,
- 		savequery VARCHAR(1000)
+ 		savequery TEXT
  		)";
  		mysqli_query($dbconn, $sql) or die(mysqli_error());	
 	}	
 	
 	//POST from form
-	$savename = ($_POST["savename"]);
-	$savequery = ($_POST["query"]);
+	
+	$savename = ($_GET["savename"]);
+	$savequery = ($_GET["link"]);
 	
 	//Whether the information should be inputted value
 	$pass = true;

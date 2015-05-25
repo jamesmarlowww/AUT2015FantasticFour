@@ -19,7 +19,7 @@ echo "Search using any combinations of the below fields!";
 <div id="main" style="width:500px; margin:left;">
 
 
-<form action = "newsearchprocess.php" method = "POST">
+<form action = "newsearchprocess.php" method = "GET">
 
 <!--User inputs title-->
 <p> Title: <input type="text" maxlength="50" name="title" /></p>

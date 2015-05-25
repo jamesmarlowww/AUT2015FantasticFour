@@ -41,14 +41,14 @@
  		mysqli_query($dbconn, $sql) or die(mysqli_error());	
 	}	
 	//POST from form
-	$title = ($_POST["title"]);
-	$description = ($_POST["description"]);
-	$evidence = ($_POST["evidences"]);
-	$why = ($_POST["why"]);
-	$what = ($_POST["what"]);
-	$how = ($_POST["how"]);
-	$benefitsandoutcomes = ($_POST["benefits"]);
-	$results = ($_POST["resultsofpractice"]);
+	$title = ($_GET["title"]);
+	$description = ($_GET["description"]);
+	$evidence = ($_GET["evidences"]);
+	$why = ($_GET["why"]);
+	$what = ($_GET["what"]);
+	$how = ($_GET["how"]);
+	$benefitsandoutcomes = ($_GET["benefits"]);
+	$results = ($_GET["resultsofpractice"]);
 	
 	//check all fields for nulls and correct format
 	$pass = true;
@@ -137,6 +137,7 @@
 	
 		//search 
 		$sql_query = "SELECT * FROM submittedPracticeInfo WHERE title LIKE '%$title%' AND description LIKE '%$description%' AND evidence LIKE '%$evidence%' AND why LIKE '%$why%' AND what LIKE '%$what%' AND how LIKE '%$how%' AND benefitsandoutcomes LIKE '%$benefitsandoutcomes%' AND results LIKE '%$results%'";
+		
 		$sqlresults = mysqli_query($dbconn, $sql_query);
 		if($sqlresults) {	
 			$output = "No results found <br>";
@@ -147,13 +148,15 @@
 			//save query feature.
 			if($firstrun) {
 				$numrows = mysqli_num_rows($sqlresults);
+				$actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 				echo "This query gave ".$numrows." result/s would you like to save it?";
-				echo'<form action = "savesearchprocess.php" method = "POST">';
-				echo'<input type="hidden" name="query" value= $sql_query >';
+				echo'<form action = "savesearchprocess.php" method = "GET">';
 				echo'Save query as(unique): <input type="text" name="savename">';
+				echo'<input type="hidden" name = "link" value = "'.$actual_link.'">';
 				echo'<input type ="submit" value = "Save">';
 				echo'</form>';
 				echo "<br><br>--------------------------------------------------------------------------------<br>";
+				echo $sql_query;
 				$firstrun = false;
 			}
 			$output = "";
