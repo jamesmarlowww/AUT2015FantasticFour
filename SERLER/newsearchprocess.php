@@ -150,7 +150,7 @@
 				echo "This query gave ".$numrows." result/s would you like to save it?";
 				echo'<form action = "savesearchprocess.php" method = "POST">';
 				echo'<input type="hidden" name="query" value= $sql_query >';
-				echo'<input type="text" name="savename">';
+				echo'Save query as(unique): <input type="text" name="savename">';
 				echo'<input type ="submit" value = "Save">';
 				echo'</form>';
 				echo "<br><br>--------------------------------------------------------------------------------<br>";
