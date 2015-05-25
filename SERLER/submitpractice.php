@@ -14,16 +14,16 @@
 
 <body>
 
-<div id="main" style="width:500px; margin:auto;">
+<div id="main" style="width:500px; margin:left;">
 
 
-<form action = "submitpracticeprocess.php" method = "POST">
+<form action = "submitpracticeprocess.php" method = "post">
 
 <!--User inputs title-->
 <p> Title: <input type="text" maxlength="50" name="title" /></p>
 
 <!--User inputs description-->
-<p> Description: <input type="text" maxlength="300" name="description" /></p>
+<p> Description: <input type="text" maxlength="300" name="desciption" /></p>
 
 <!--User inputs evidences-->
 <p> Evidence/s: <input type="text" maxlength="1000" name="evidences" /></p>
