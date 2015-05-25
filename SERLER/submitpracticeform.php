@@ -14,7 +14,7 @@
 
 <body>
 
-<div id="main" style="width:500px; margin:auto;">
+<div id="main" style="width:500px; margin:left;">
 
 
 <form action = "submitpracticeprocess.php" method = "POST">

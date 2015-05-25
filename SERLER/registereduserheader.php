@@ -23,7 +23,7 @@
 
 <ul id="menu">
 	<!--Link to the new search page-->
-	<li><a href="registerednewsearch.php">Practice Search</a></li>
+	<li><a href="newsearch.php">Practice Search</a></li>
 	<!--Link to the saved searches page-->
 	<li><a href="savedsearches.php">My Saved Searches</a></li> 
 	<!--Link to the submit page-->
