@@ -51,21 +51,114 @@
 	$benefitsandoutcomes = ($_POST["benefits"]);
 	$results = ($_POST["resultsofpractice"]);
 	
-	//Check for duplicate entries in database
-        $sql_valid = "SELECT title FROM submittedPracticeInfo WHERE title = '$title'";
-        $sql_call = mysqli_query($dbconn, $sql_valid) or die(mysqli_error());
-        
-        //Call entry/ query
-        if(mysqli_fetch_assoc($sql_call)) {
-            $output = $output . "This status code already exists!<br> Please try another, could not save<br>";
-            } else {
-                $sql_post = "INSERT INTO submittedPracticeInfo VALUES('$title', '$description', '$evidence', '$why', '$what', '$how', '$benefitsandoutcomes', '$results')";
-                $post_query = mysqli_query($dbconn, $sql_post) or die(mysqli_error());
-                
-           	if($post_query)
-            	$output = $output . "Successfully entered status!";
-            }
-        echo $output;
+	//Whether the information should be inputted value
+	$pass = true;
+	//Validation for title
+	if (empty($title)) {
+		$output = $output . "Title is required *<br>";
+		$pass = false;
+	} else {
+		$pattern = "/[^A-Za-z0-9.,?! ]/";
+		if(preg_match($pattern, $title)) {
+			$output = $output . "Title uses unallowed values *<br>";
+			$pass = false;
+		}	
+	}
+	//Validation for description
+	if (empty($description)) {
+		$output = $output . "Description is required *<br>";
+		$pass = false;
+	} else {
+		$pattern = "/[^A-Za-z0-9.,?! ]/";
+		if(preg_match($pattern, $description)) {
+			$output = $output . "Description uses unallowed values *<br>";
+			$pass = false;
+		}	
+	}
+	//Validation for evidence
+	if (empty($evidence)) {
+		$output = $output . "Evidence is required *<br>";
+		$pass = false;
+	} else {
+		$pattern = "/[^A-Za-z0-9.,?! ]/";
+		if(preg_match($pattern, $evidence)) {
+			$output = $output . "Evidence uses unallowed values *<br>";
+			$pass = false;
+		}	
+	}
+	//Validation for why
+	if (empty($why)) {
+		$output = $output . "Why is required *<br>";
+		$pass = false;
+	} else {
+		$pattern = "/[^A-Za-z0-9.,?! ]/";
+		if(preg_match($pattern, $why)) {
+			$output = $output . "Why uses unallowed values *<br>";
+			$pass = false;
+		}	
+	}
+	//Validation for what
+	if (empty($what)) {
+		$output = $output . "What is required *<br>";
+		$pass = false;
+	} else {
+		$pattern = "/[^A-Za-z0-9.,?! ]/";
+		if(preg_match($pattern, $what)) {
+			$output = $output . "What uses unallowed values *<br>";
+			$pass = false;
+		}	
+	}
+	//Validation for how
+	if (empty($how)) {
+		$output = $output . "How is required *<br>";
+		$pass = false;
+	} else {
+		$pattern = "/[^A-Za-z0-9.,?! ]/";
+		if(preg_match($pattern, $how)) {
+			$output = $output . "How uses unallowed values *<br>";
+			$pass = false;
+		}	
+	}
+	//Validation for benefits
+	if (empty($benefitsandoutcomes )) {
+		$output = $output . "Benefits are required *<br>";
+		$pass = false;
+	} else {
+		$pattern = "/[^A-Za-z0-9.,?! ]/";
+		if(preg_match($pattern, $benefitsandoutcomes)) {
+			$output = $output . "Benefits uses unallowed values *<br>";
+			$pass = false;
+		}	
+	}
+	//Validation for results
+	if (empty($results )) {
+		$output = $output . "Results are required *<br>";
+		$pass = false;
+	} else {
+		$pattern = "/[^A-Za-z0-9.,?! ]/";
+		if(preg_match($pattern, $results)) {
+			$output = $output . "Results uses unallowed values *<br>";
+			$pass = false;
+		}	
+	}
+	//Form validation
+	if($pass) {
+		$output = $output . "All input is in correct format.<br>";
+		//Check for duplicate entries in database
+		$sql_valid = "SELECT title FROM submittedPracticeInfo WHERE title = '$title'";
+		$sql_call = mysqli_query($dbconn, $sql_valid) or die(mysqli_error());
+		//Call entry/ query
+		if(mysqli_fetch_assoc($sql_call)) {
+			$output = $output . "This title already exists<br> Please try another, could not save<br>";
+		} else {
+			$sql_post = "INSERT INTO submittedPracticeInfo VALUES('$title', '$description', '$evidence', '$why', '$what', '$how', 	'$benefitsandoutcomes', '$results')";
+			$post_query = mysqli_query($dbconn, $sql_post) or die(mysqli_error());
+			if($post_query) {
+				$output = $output . "Successfully entered status!";
+			}
+		}
+	}
+	echo $output;
 ?>
 </div>
 </body>
