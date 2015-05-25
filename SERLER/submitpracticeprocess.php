@@ -12,151 +12,151 @@
 	<h1>Submitting Practice</h1>
 
 <?php
-	// Variable that contains the title
-	$title =$_POST["title"];
-	// Variable that contains the description
-	$desciption =$_POST["description"];
-	// Variable that contains evidences
-	$evidence =$_POST["evidence"];
-	// Variable that contains why practice was use
-	$why =$_POST["why"];
-	// Variable that contains what practice was use
-	$what =$_POST["what"];
-	// Variable that contains how practice was use
-	$how =$POST["how"];
-	// Variable that contains the benefits and outcomes of using a particular practice
-	$benefitsAndOutcomes =$POST["benefitsAndOutcomes"];
-	// Variablethat contains the results of the practice
-	$results =$POST["results"];
-	
-	// Function that returns true if the title is not null, and false if it is null.
-	function checkTitleisNotNull($stri){
-	if(!$stri == ''){
- 		return TRUE;}}
-	
-	// Function that returns true if the descriptionis not null, and false if it is null.
-	function checkDescriptionisNotNull($stri){
-	if(!$stri == ''){
- 		return TRUE;}}
-	
-	// Function that returns true if the evidence is not null, and false if it is null.
-	function checkEvidenceisNotNull($stri){
-	if(!$stri == ''){
- 		return TRUE;}}
-	
-	// Function that returns true if the why is not null, and false if it is null.
-	function checkWhyisNotNull($stri){
-	if(!$stri == ''){
- 		return TRUE;}}
-	
-	// Function that returns true if the what is not null, and false if it is null.
-	function checkWhatisNotNull($stri){
-	if(!$stri == ''){
- 		return TRUE;}}
-	
-	// Function that returns true if the how is not null, and false if it is null.
-	function checkHowisNotNull($stri){
-	if(!$stri == ''){
- 		return TRUE;}}
-	
-	// Function that returns true if the benefits and outcomes is not null, and false if it is null.
-	function checkBenefitsAndOutcomesisNotNull($stri){
-	if(!$stri == ''){
- 		return TRUE;}}
-	
-	// Function that returns true if the results is not null, and false if it is null.
-	function checkResultsisNotNull($stri){
-	if(!$stri == ''){
- 		return TRUE;}}
-
-
-	// Gets the setup info
- 	require_once ("settings.php");
-	// The database table is allocated a variable
- 	$sql_tble = "submittedPracticeInfo";
-	// The sql statement that connects to the database
-	$link =@mysqli_connect("host", "username", "password", "database") or die( " Unable to connect to server ");  
- 	// Selects the database
-	mysql_select_db($sql_tble);
-	// The sql statement that will create the required table if it doesn't already exist.
- 	$sql = "CREATE TABLE IF NOT EXISTS sumittedPracticeInfo(
- 		Title VARCHAR(50) NOT NULL,
- 		Description VARCHAR(1000) NOT NULL,
- 		Evidence VARCHAR(1000),
- 		Why VARCHAR(1000),
- 		What VARCHAR(1000),
-		How VARCHAR(1000),
-		BenefitsAndOutcomes VARCHAR(1000),
-		Results VARCHAR(1000)
- 	)";
- 
- 	// Implements the create table sql statement from above. Return an error if it doesn't work.
- 	if (!@mysqli_query($link, $sql)){
- 		echo "Error in CREATE TABLE.";
+	//Output text
+	$output = "";
+	//Database connection
+	include_once("settings.php");
+	$dbconn = mysqli_connect($sql_host, $sql_user, $sql_pass, $sql_db);
+	//If cannot connect, exit
+	if(!$dbconn) {
+		$output = $output . "Cannot connect to the database";
+		echo $output;
+		exit;
 	}
- 
- 	echo "<p></p>";
- 
-	// The sql statement that will insert the status information into the table 
- 	$tableQuery = "insert into $sql_tble"
-						."(Title, Description, Evidence, Why, What, How, BenefitsAndOutcomes, Results)"
-					." values "
-						."('$title', '$desciption', '$evidence', '$why','$what', '$how','$benefitsAndOutcomes', '$results')";
+	//Check table exists. If not, create one
+	$table = mysqli_query($dbconn, "SELECT 1 FROM sumittedPracticeInfo");
+	if(!$table) {
+		$sql = "CREATE TABLE IF NOT EXISTS submittedPracticeInfo(
+ 		title VARCHAR(50) NOT NULL,
+ 		description VARCHAR(1000) NOT NULL,
+ 		evidence VARCHAR(1000),
+ 		why VARCHAR(1000),
+ 		what VARCHAR(1000),
+		how VARCHAR(1000),
+		benefitsandoutcomes VARCHAR(1000),
+		results VARCHAR(1000)
+ 		)";
+ 		mysqli_query($dbconn, $sql) or die(mysqli_error());	
+	}	
+	//POST from form
+	$title = ($_POST["title"]);
+	$description = ($_POST["description"]);
+	$evidence = ($_POST["evidences"]);
+	$why = ($_POST["why"]);
+	$what = ($_POST["what"]);
+	$how = ($_POST["how"]);
+	$benefitsandoutcomes = ($_POST["benefits"]);
+	$results = ($_POST["resultsofpractice"]);
 	
-	
-	//conditional statement 
-	if(
-		(checkTitleisNotNull($title) == TRUE) &&
-		(checkDescriptionisNotNull($description) == TRUE) &&
-		(checkEvidenceisNotNull($evidence) == TRUE) &&
-		(checkWhyisNotNull($why) == TRUE) &&
-		(checkWhatisNotNull($what) == TRUE)&&
-		(checkHowisNotNull($how) == TRUE)&&
-		(checkBenefitsAnsOutcomesisNotNull($benefitsAndOutcomes) == TRUE)&&
-		(checkResultsisNotNull($results) == TRUE))
-	{
- 		// display a success message
-		echo "<p><center>Your practice was successfully submitted for review.</center></p>";
-		$theTableResult = mysqli_query($link, $tableQuery);
-		if(!$theTableResult) {
-			} else {
-				// display a success message
-				echo "<p><center>Thank you for submitting your practice.</center></p>";}
-		}else{
-			// display an error message when practice requirement is not met 
-			echo "<p>ERROR cannot submit your pratice:</p>";}
-			
- 		//Conditional statements
-		if(checkTitleisNotNull($title) == FALSE){
-			echo "<p>The title must not be null</p>"
+	//Whether the information should be inputted value
+	$pass = true;
+	//Validation for title
+	if (empty($title)) {
+		$output = $output . "Title is required *<br>";
+		$pass = false;
+	} else {
+		$pattern = "/[^A-Za-z0-9.,?! ]/";
+		if(preg_match($pattern, $title)) {
+			$output = $output . "Title uses unallowed values *<br>";
+			$pass = false;
 		}	
-		if(checkDescriptionisNotNull($description) == FALSE){
-			echo "<p>The description must not be null</p>"
+	}
+	//Validation for description
+	if (empty($description)) {
+		$output = $output . "Description is required *<br>";
+		$pass = false;
+	} else {
+		$pattern = "/[^A-Za-z0-9.,?! ]/";
+		if(preg_match($pattern, $description)) {
+			$output = $output . "Description uses unallowed values *<br>";
+			$pass = false;
 		}	
-		if(checkEvidenceisNotNull($evidence) == FALSE){
-			echo "<p>The evidence must not be null</p>"
+	}
+	//Validation for evidence
+	if (empty($evidence)) {
+		$output = $output . "Evidence is required *<br>";
+		$pass = false;
+	} else {
+		$pattern = "/[^A-Za-z0-9.,?! ]/";
+		if(preg_match($pattern, $evidence)) {
+			$output = $output . "Evidence uses unallowed values *<br>";
+			$pass = false;
+		}	
+	}
+	//Validation for why
+	if (empty($why)) {
+		$output = $output . "Why is required *<br>";
+		$pass = false;
+	} else {
+		$pattern = "/[^A-Za-z0-9.,?! ]/";
+		if(preg_match($pattern, $why)) {
+			$output = $output . "Why uses unallowed values *<br>";
+			$pass = false;
+		}	
+	}
+	//Validation for what
+	if (empty($what)) {
+		$output = $output . "What is required *<br>";
+		$pass = false;
+	} else {
+		$pattern = "/[^A-Za-z0-9.,?! ]/";
+		if(preg_match($pattern, $what)) {
+			$output = $output . "What uses unallowed values *<br>";
+			$pass = false;
+		}	
+	}
+	//Validation for how
+	if (empty($how)) {
+		$output = $output . "How is required *<br>";
+		$pass = false;
+	} else {
+		$pattern = "/[^A-Za-z0-9.,?! ]/";
+		if(preg_match($pattern, $how)) {
+			$output = $output . "How uses unallowed values *<br>";
+			$pass = false;
+		}	
+	}
+	//Validation for benefits
+	if (empty($benefitsandoutcomes )) {
+		$output = $output . "Benefits are required *<br>";
+		$pass = false;
+	} else {
+		$pattern = "/[^A-Za-z0-9.,?! ]/";
+		if(preg_match($pattern, $benefitsandoutcomes)) {
+			$output = $output . "Benefits uses unallowed values *<br>";
+			$pass = false;
+		}	
+	}
+	//Validation for results
+	if (empty($results )) {
+		$output = $output . "Results are required *<br>";
+		$pass = false;
+	} else {
+		$pattern = "/[^A-Za-z0-9.,?! ]/";
+		if(preg_match($pattern, $results)) {
+			$output = $output . "Results uses unallowed values *<br>";
+			$pass = false;
+		}	
+	}
+	//Form validation
+	if($pass) {
+		$output = $output . "All input is in correct format.<br>";
+		//Check for duplicate entries in database
+		$sql_valid = "SELECT title FROM submittedPracticeInfo WHERE title = '$title'";
+		$sql_call = mysqli_query($dbconn, $sql_valid) or die(mysqli_error());
+		//Call entry/ query
+		if(mysqli_fetch_assoc($sql_call)) {
+			$output = $output . "This title already exists<br> Please try another, could not save<br>";
+		} else {
+			$sql_post = "INSERT INTO submittedPracticeInfo VALUES('$title', '$description', '$evidence', '$why', '$what', '$how', 	'$benefitsandoutcomes', '$results')";
+			$post_query = mysqli_query($dbconn, $sql_post) or die(mysqli_error());
+			if($post_query) {
+				$output = $output . "Successfully entered practice!";
+			}
 		}
-		if(checkWhyisNotNull($why) == FALSE){
-			echo "<p>The why practice was use must not be null</p>"
-		}
-		if(checkWhatisNotNull($what) == FALSE){
-			echo "<p>The what was the practice use must not be null</p>"
-		}
-		if(checkHowisNotNull($how) == FALSE){
-			echo "<p>The how the practice was use must not be null</p>"
-		}
-		if(checkBenefitsAndOutcomesisNotNull($description) == FALSE){
-			echo "<p>The Benefits and outcomes must not be null</p>"
-		}
-		if(checkResultsisNotNull($results) == FALSE){
-			echo "<p>The results of the practice must not be null</p>"
-		}
-		
-
-
- 			// close the database connection
- 			mysqli_close($link);
- 	?>
+	}
+	echo $output;
+?>
 </div>
 </body>
 </html>
