@@ -156,7 +156,7 @@
 				echo'<input type ="submit" value = "Save">';
 				echo'</form>';
 				echo "<br><br>--------------------------------------------------------------------------------<br>";
-				echo $sql_query;
+				
 				$firstrun = false;
 			}
 			$output = "";
