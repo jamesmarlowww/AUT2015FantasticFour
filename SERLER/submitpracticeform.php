@@ -14,40 +14,135 @@
 
 <body>
 
-<div id="main" style="width:500px; margin:left;">
+    <div id="main" style="width:500px; margin:left;">
+    
+    
+    <form action = "submitpracticeprocess.php" method = "POST">
+    
+    <!--Article title-->
+    <p>Article Title:<br>
+    <input type="text" name="title" size="50"/><br>
+    
+    <!--Research Author-->
+    Article Author(s):<br>
+    <input type="text" name="author" size="50"/><br><br>
+    
+    <!--Credibility Rating-->
+    <form>Credibility Rating:<br>
+    Worst<--- 1  <input type="radio" name="one" value="one" checked>  
+      2 <input type="radio" name="two" value="two" checked>
+      3 <input type="radio" name="three" value="three" checked>
+      4 <input type="radio" name="four" value="four" checked>
+      5 <input type="radio" name="five" value="five" checked>--->Best<br></form> 
+      
+    <!--Credibility Rating who-->  
+    Who Rated Credibility?:<br>
+    <input type="text" name="whocred" size="50"/><br>
+    
+    <!--Credibility Rating Reason-->
+    Reason For Credibility Rating:<br>
+    <input type="text" name="reasoncred" size="50"/><br>
+    
+    <!--Research level-->
+    Research Level:<br>
+    <select name="researchlevel">
+    <option value="i">I</option>
+    <option value="ii">II</option>
+    <option value="iii">III</option>
+    <option value="iv">IV</option>
+    <option value="v">V</option>
+    <option value="vi">VI</option>
+    <option value="vii">VII</option></select> <a href="http://researchguides.ebling.library.wisc.edu/content.php?pid=325126&sid=2940230">help</a><br><br>
+    
+    <!--Journal-->
+    Journal Name:<br>
+    <input type="text" name="journtitle" size="50"/><br>
+    Journal Volume:<br>
+    <input type="text" name="journvol" size="50"/><br>
+    Journal Page(s):<br>
+    <input type="text" name="journpage" size="50"/><br>
+    Article Version:<br>
+    <input type="text" name="artversion" size="50"/><br><br>
+    
+    <!--Practice being Researched-->
+    Software Engineering Practice Being Researched:<br>
+    <select name="engpractice">
+    <option value="reqeng">Requirements Engineering</option>
+    <option value="softdes">Software Design</option>
+    <option value="softconst">Software Construction</option>
+    <option value="softtest">Software Testing</option>
+    <option value="softmain">Software Maintenance</option>
+    <option value="softqual">Software Quality Management</option>
+    <option value="softtools">Software Engineering Tools</option></select><br><br>
+    
+     <!--Description of being Researched-->
+     Description Of Research:<br>
+     <textarea rows=5 cols=50 name="descresearch"></textarea><br>
+     Result From The Study:<br>
+     <textarea rows=5 cols=50 name="resresearch"></textarea><br>
+     Benefits/Outcomes From The Study:<br>
+     <textarea rows=5 cols=50 name="beneresearch"></textarea><br>
+     
+     
+     <br>Context Of The Study<br><br>
+     
+     <!--who,what etc-->
+     Who Was Involved With The Study?:<br>
+     <textarea rows=5 cols=50 name="whocont"></textarea><br>
+     What Was Involved With The Study?:<br>
+     <textarea rows=5 cols=50 name="whatcont"></textarea><br>
+     Where Was The Study Performed?:<br>
+     <textarea rows=5 cols=50 name="whatcont"></textarea><br>
+     When Was The Study Performed?:<br>
+     <textarea rows=5 cols=50 name="whencont"></textarea><br>
+     How Was The Study Performed?:<br>
+     <textarea rows=5 cols=50 name="howcont"></textarea><br>
+     Why Was The Study Performed?:<br>
+     <textarea rows=5 cols=50 name="whycont"></textarea><br>
+     Integrity Of The Implementation Of The Practice/Method:<br>
+     <textarea rows=5 cols=50 name="integ"></textarea><br>
+     
+     <form>Confidence Rating Of Study:<br>
+    Worst<--- 1  <input type="radio" name="one" value="one" checked>  
+      2 <input type="radio" name="two" value="two" checked>
+      3 <input type="radio" name="three" value="three" checked>
+      4 <input type="radio" name="four" value="four" checked>
+      5 <input type="radio" name="five" value="five" checked>--->Best<br></form> 
+     
+     
+   	<br><br>Research Design<br><br>
+    
+    Research Question:<br>
+    <textarea rows=5 cols=50 name="resquest"></textarea><br>
+    
+    <!--Research Method-->
+    Software Engineering Practice Being Researched:<br>
+    <select name="resmethod">
+    <option value="conexp">Controlled Experiment</option>
+    <option value="casestud">Case Study</option>
+    <option value="survresearch">Survey Research</option>
+    <option value="ethno">Ethnographies</option>
+    <option value="actres">Action Research</option>
+    <option value="mixmeth">Mixed-Methods Approach</option>
+    </select><br>
+    Research Metrics:<br>
+    <textarea rows=5 cols=50 name="resmet"></textarea><br>
+    Nature Of Participants:<br>
+	<select name="partic">
+    <option value="stud">Student</option>
+    <option value="researcher">Researcher</option>
+    <option value="lect">Lecturer</option>
+    <option value="other">Other</option>
+    
+    </select><br>
+    <br>
+<br>
 
-
-<form action = "submitpracticeprocess.php" method = "POST">
-
-<!--User inputs title-->
-<p> Title: <input type="text" maxlength="50" name="title" /></p>
-
-<!--User inputs description-->
-<p> Description: <input type="text" maxlength="300" name="description" /></p>
-
-<!--User inputs evidences-->
-<p> Evidence/s: <input type="text" maxlength="1000" name="evidences" /></p>
-
-<!--User inputs why practice was use-->
-<p> Why practice was use: <input type="text" maxlength="1000" name="why" /></p>
-
-<!--User inputs what practice was use-->
-<p> What practice was use: <input type="text" maxlength="1000" name="what" /></p>
-
-<!--User inputs how practice was use-->
-<p> How practice was use: <input type="text" maxlength="1000" name="how" /></p>
-
-<!--User inputs the benefits and outcomes of using a particular practice-->
-<p> Benefits and outcomes of using a particular practice: <input type="text" maxlength="1000" name="benefits" /></p>
-
-<!--User inputs the results of using a particular practice-->
-<p> Results of using a particular practice: <input type="text" maxlength="1000" name="resultsofpractice" /></p>
-
-<p>Please click on the Submit button to submit your practice for review.</p>
-
-<input type = "submit" value = "Submit"/>
-
-</div>
+    Please click on the Submit button to submit your practice for review.
+    
+    <input type = "submit" value = "Submit"/>
+    
+    </div>
 
 </body>
 
