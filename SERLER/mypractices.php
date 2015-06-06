@@ -10,7 +10,7 @@
 
 <!--This is the creation of the header that is applied to ALL pages-->
 
-<?php include "registereduserheader.php" ?>
+<?php include "header.php" ?>
 
 <body>
 

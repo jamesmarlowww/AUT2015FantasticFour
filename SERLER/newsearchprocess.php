@@ -4,7 +4,7 @@
 	<link href="style.css" rel="stylesheet">
 	<!--This is the creation of the header that is applied to ALL registered user's pages-->
 
-	<?php include "registereduserheader.php" ?>
+	<?php include "header.php" ?>
 
 </head>
 <body>
@@ -25,20 +25,39 @@
 		exit;
 	}
 	//Check table exists. If not, create one
-	$table = mysqli_query($dbconn, "SELECT 1 FROM sumittedPracticeInfo");
+	$table = mysqli_query($dbconn, "SELECT 1 FROM submittedPracticeInfo");
 
 	if(!$table) {
 		$sql = "CREATE TABLE IF NOT EXISTS submittedPracticeInfo(
  		title VARCHAR(50) NOT NULL,
- 		description VARCHAR(1000) NOT NULL,
- 		evidence VARCHAR(1000),
- 		why VARCHAR(1000),
- 		what VARCHAR(1000),
-		how VARCHAR(1000),
-		benefitsandoutcomes VARCHAR(1000),
-		results VARCHAR(1000)
+ 		author VARCHAR(50) NOT NULL,
+ 		credibilityrating VARCHAR(10),
+ 		whorated VARCHAR(200),
+ 		reasonforrating VARCHAR(500),
+		researchlevel VARCHAR(1000),
+		journaltitle VARCHAR(300),
+		journalvolume VARCHAR(5),
+		journalpages VARCHAR(50),
+		articleversion VARCHAR(50),
+		researchpractice VARCHAR(50),
+		researchdescription VARCHAR(1000),
+		results VARCHAR(1000),
+		benefits VARCHAR(1000),
+		contextwho VARCHAR(1000),
+		contextwhat VARCHAR(1000),
+		contextwhere VARCHAR(1000),
+		contextwhen VARCHAR(1000),
+		contexthow VARCHAR(1000),
+		contextwhy VARCHAR(1000),
+		integrity VARCHAR(1000),
+		confidencerating VARCHAR(10),
+		researchquestion VARCHAR(1000),
+		researchmethod VARCHAR(1000),
+		researchmetrics VARCHAR(1000),
+		participants VARCHAR(1000)
  		)";
  		mysqli_query($dbconn, $sql) or die(mysqli_error());	
+ 		
 	}	
 	//POST from form
 	$title = ($_GET["title"]);
