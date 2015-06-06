@@ -26,7 +26,6 @@
 	}
 	//Check table exists. If not, create one
 	$table = mysqli_query($dbconn, "SELECT 1 FROM submittedPracticeInfo");
-
 	if(!$table) {
 		$sql = "CREATE TABLE IF NOT EXISTS submittedPracticeInfo(
  		title VARCHAR(50) NOT NULL,
@@ -36,9 +35,10 @@
  		reasonforrating VARCHAR(500),
 		researchlevel VARCHAR(1000),
 		journaltitle VARCHAR(300),
-		journalvolume VARCHAR(5),
+		journalvolume VARCHAR(1000),
 		journalpages VARCHAR(50),
 		articleversion VARCHAR(50),
+		year VARCHAR(50),
 		researchpractice VARCHAR(50),
 		researchdescription VARCHAR(1000),
 		results VARCHAR(1000),
@@ -57,17 +57,17 @@
 		participants VARCHAR(1000)
  		)";
  		mysqli_query($dbconn, $sql) or die(mysqli_error());	
+	
  		
 	}	
 	//POST from form
 	$title = ($_GET["title"]);
-	$description = ($_GET["description"]);
-	$evidence = ($_GET["evidences"]);
-	$why = ($_GET["why"]);
-	$what = ($_GET["what"]);
-	$how = ($_GET["how"]);
-	$benefitsandoutcomes = ($_GET["benefits"]);
-	$results = ($_GET["resultsofpractice"]);
+	$author = ($_GET["author"]);
+	$journalname = ($_GET["journalname"]);
+	$journalvolume = ($_GET["journalvolume"]);
+	$year = ($_GET["year"]);
+	$andor = ($_GET["andor"]);
+	
 	
 	//check all fields for nulls and correct format
 	$pass = true;
@@ -82,80 +82,49 @@
 		}	
 	}
 	
-	//Validation for description
-	if (empty($description)) {
-		$description = "%";
+	//Validation for author
+	if (empty($author)) {
+		$author = "%";
 	} else {
 		$pattern = "/[^A-Za-z0-9.,?! ]/";
-		if(preg_match($pattern, $description)) {
-			$output = $output . "Description uses unallowed values *<br>";
+		if(preg_match($pattern, $author)) {
+			$output = $output . "Author uses unallowed values *<br>";
 			$pass = false;
 		}	
 	}
-	//Validation for evidence
-	if (empty($evidence)) {
-		$evidence = "";
+	//Journal Name
+	if (empty($journalname)) {
+		$journalname = "%";
 	} else {
 		$pattern = "/[^A-Za-z0-9.,?! ]/";
-		if(preg_match($pattern, $evidence)) {
-			$output = $output . "Evidence uses unallowed values *<br>";
+		if(preg_match($pattern, $journalname)) {
+			$output = $output . "Journal Name uses unallowed values *<br>";
 			$pass = false;
 		}	
 	}
-	//Validation for why
-	if (empty($why)) {
-		$why = "%";
+	//Journal Volume
+	if (empty($journalvolume)) {
+		$journalvolume = "%";
 	} else {
 		$pattern = "/[^A-Za-z0-9.,?! ]/";
-		if(preg_match($pattern, $why)) {
-			$output = $output . "Why uses unallowed values *<br>";
+		if(preg_match($pattern, $journalvolume)) {
+			$output = $output . "Journal volume uses unallowed values *<br>";
 			$pass = false;
 		}	
 	}
 	//Validation for what
-	if (empty($what)) {
-		$what = "%";
+	if (empty($year)) {
+		$year = "%";
 	} else {
 		$pattern = "/[^A-Za-z0-9.,?! ]/";
-		if(preg_match($pattern, $what)) {
-			$output = $output . "What uses unallowed values *<br>";
+		if(preg_match($pattern, $year)) {
+			$output = $output . "year uses unallowed values *<br>";
 			$pass = false;
 		}	
-	}
-	//Validation for how
-	if (empty($how)) {
-		$how = "%";
-	} else {
-		$pattern = "/[^A-Za-z0-9.,?! ]/";
-		if(preg_match($pattern, $how)) {
-			$output = $output . "How uses unallowed values *<br>";
-			$pass = false;
-		}	
-	}
-	//Validation for benefits
-	if (empty($benefitsandoutcomes )) {
-		$benefitsandoutcomes = "%";
-	} else {
-		$pattern = "/[^A-Za-z0-9.,?! ]/";
-		if(preg_match($pattern, $benefitsandoutcomes)) {
-			$output = $output . "Benefits uses unallowed values *<br>";
-			$pass = false;
-		}	
-	}
-	//Validation for results
-	if (empty($results )) {
-		$results = "%";
-	} else {
-		$pattern = "/[^A-Za-z0-9.,?! ]/";
-		if(preg_match($pattern, $results)) {
-			$output = $output . "Results uses unallowed values *<br>";
-			$pass = false;
-		}
 	}
 	
-	
-		//search 
-		$sql_query = "SELECT * FROM submittedPracticeInfo WHERE title LIKE '%$title%' AND description LIKE '%$description%' AND evidence LIKE '%$evidence%' AND why LIKE '%$why%' AND what LIKE '%$what%' AND how LIKE '%$how%' AND benefitsandoutcomes LIKE '%$benefitsandoutcomes%' AND results LIKE '%$results%'";
+	if($andor == "and") {
+		$sql_query = "SELECT * FROM submittedPracticeInfo WHERE title LIKE '%$title%' AND author LIKE '%$author%' AND journaltitle LIKE '%$journalname%' AND journalvolume LIKE '%$journalvolume%' AND year LIKE '%$year%'";
 		
 		$sqlresults = mysqli_query($dbconn, $sql_query);
 		if($sqlresults) {	
@@ -163,9 +132,19 @@
 		} 
 		$firstrun = true;
 		while($row = mysqli_fetch_array($sqlresults,MYSQLI_ASSOC)) {
-			
-			//save query feature.
 			if($firstrun) {
+<<<<<<< HEAD
+					$numrows = mysqli_num_rows($sqlresults);
+					$actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+					echo "This query gave ".$numrows." result/s would you like to save it?";
+					echo'<form action = "savesearchprocess.php" method = "GET">';
+					echo'Save query as(unique): <input type="text" name="savename">';
+					echo'<input type="hidden" name = "link" value = "'.$actual_link.'">';
+					echo'<input type ="submit" value = "Save">';
+					echo'</form>';
+					echo "<br><br>--------------------------------------------------------------------------------<br>";
+					$firstrun = false;
+=======
 				$numrows = mysqli_num_rows($sqlresults);
 				$actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 				echo "This query gave ".$numrows." result/s would you like to save it?";
@@ -177,18 +156,52 @@
 				echo "<br><br>--------------------------------------------------------------------------------<br>";
 				
 				$firstrun = false;
+>>>>>>> master
 			}
+		}
 			$output = "";
 			echo "Title: ".$row['title']."<br>";
-			echo "Description: ".$row['description']."<br>";
-			echo "Evidence: ".$row['evidence']."<br>";
-			echo "Why: ".$row['why']."<br>";
-			echo "What: ".$row['what']."<br>";
-			echo "How: ".$row['how']."<br>";
-			echo "Benefits: ".$row['benefitsandoutcomes']."<br>";
-			echo "Results: ".$row['results']."<br>";
+			echo "Author: ".$row['author']."<br>";
+			echo "Journal Name: ".$row['journaltitle']."<br>";
+			echo "Journal Volume: ".$row['journalvolume']."<br>";
+			echo "Year: ".$row['year']."<br>";
 			echo "--------------------------------------------------------------------------------<br>";
-		}	
+		
+		
+	} else {
+		$sql_query = "SELECT * FROM submittedPracticeInfo WHERE title LIKE '%$title%' OR author LIKE '%$author%' OR journaltitle LIKE '%$journalname%' OR journalvolume LIKE '%$journalvolume%' OR year LIKE '%$year%'";
+		
+		$sqlresults = mysqli_query($dbconn, $sql_query);
+		if($sqlresults) {	
+			$output = "No results found <br>";
+		} 
+		$firstrun = true;
+		while($row = mysqli_fetch_array($sqlresults,MYSQLI_ASSOC)) {
+			if($firstrun) {
+					$numrows = mysqli_num_rows($sqlresults);
+					$actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+					echo "This query gave ".$numrows." result/s would you like to save it?";
+					echo'<form action = "savesearchprocess.php" method = "GET">';
+					echo'Save query as(unique): <input type="text" name="savename">';
+					echo'<input type="hidden" name = "link" value = "'.$actual_link.'">';
+					echo'<input type ="submit" value = "Save">';
+					echo'</form>';
+					echo "<br><br>--------------------------------------------------------------------------------<br>";
+					$firstrun = false;
+				}
+				$output = "";
+				echo "Title: ".$row['title']."<br>";
+				echo "Author: ".$row['author']."<br>";
+				echo "Journal Name: ".$row['journaltitle']."<br>";
+				echo "Journal Volume: ".$row['journalvolume']."<br>";
+				echo "Year: ".$row['year']."<br>";
+				echo "--------------------------------------------------------------------------------<br>";
+		}
+		
+	}
+	
+	
+		
 	echo $output;
 ?>
 </div>

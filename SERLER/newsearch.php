@@ -13,41 +13,38 @@
 <?php include "header.php" ?>
 
 <body>
-<?php
-echo "Search using any combinations of the below fields!";
-?>
+
 <div id="main" style="width:500px; margin:left;">
 
 
 <form action = "newsearchprocess.php" method = "GET">
 
 <!--User inputs title-->
-<p> Title: <input type="text" maxlength="50" name="title" /></p>
+Article Title:<br> <input type="text" maxlength="50" name="title" /><br>
 
-<!--User inputs description-->
-<p> Description: <input type="text" maxlength="300" name="description" /></p>
+<!--User inputs author-->
+Article Author:<br> <input type="text" maxlength="300" name="author" /><br>
 
-<!--User inputs evidences-->
-<p> Evidence/s: <input type="text" maxlength="1000" name="evidences" /></p>
+<!--User inputs Journal Name-->
+Journal Name:<br> <input type="text" maxlength="1000" name="journalname" /><br>
 
-<!--User inputs why practice was use-->
-<p> Why practice was use: <input type="text" maxlength="1000" name="why" /></p>
+<!--User inputs journal volume -->
+Journal Volume:<br> <input type="text" maxlength="1000" name="journalvolume" /><br>
 
-<!--User inputs what practice was use-->
-<p> What practice was use: <input type="text" maxlength="1000" name="what" /></p>
 
-<!--User inputs how practice was use-->
-<p> How practice was use: <input type="text" maxlength="1000" name="how" /></p>
+Year Of Publish:<br> <input type="text" maxlength="1000" name="year" /><br>
 
-<!--User inputs the benefits and outcomes of using a particular practice-->
-<p> Benefits and outcomes of using a particular practice: <input type="text" maxlength="1000" name="benefits" /></p>
+How To Search:<br>
+ <select name="andor">
+    <option value="and">All Fields Matching(AND)</option>
+    <option value="or">Atleast One Field Matching(OR)</option>
+    </select>
 
-<!--User inputs the results of using a particular practice-->
-<p> Results of using a particular practice: <input type="text" maxlength="1000" name="resultsofpractice" /></p>
 
 <p>Please click on the search button to search for your queries</p>
 
 <input type = "submit" value = "Search"/>
+</form>
 
 </div>
 
