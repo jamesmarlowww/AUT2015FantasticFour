@@ -10,7 +10,7 @@
 
 <!--This is the creation of the header that is applied to ALL pages for registered user-->
 
-<?php include "registereduserheader.php" ?>
+<?php include "header.php" ?>
 
 <body>
 
@@ -28,12 +28,12 @@
     <input type="text" name="author" size="50"/><br><br>
     
     <!--Credibility Rating-->
-    <form>Credibility Rating:<br>
+    Credibility Rating:<br>
     Worst<--- 1  <input type="radio" name="one" value="one" checked>  
-      2 <input type="radio" name="two" value="two" checked>
-      3 <input type="radio" name="three" value="three" checked>
-      4 <input type="radio" name="four" value="four" checked>
-      5 <input type="radio" name="five" value="five" checked>--->Best<br></form> 
+      2 <input type="radio" name="one" value="two" checked>
+      3 <input type="radio" name="one" value="three" checked>
+      4 <input type="radio" name="one" value="four" checked>
+      5 <input type="radio" name="one" value="five" checked>--->Best<br>
       
     <!--Credibility Rating who-->  
     Who Rated Credibility?:<br>
@@ -92,7 +92,7 @@
      What Was Involved With The Study?:<br>
      <textarea rows=5 cols=50 name="whatcont"></textarea><br>
      Where Was The Study Performed?:<br>
-     <textarea rows=5 cols=50 name="whatcont"></textarea><br>
+     <textarea rows=5 cols=50 name="wherecont"></textarea><br>
      When Was The Study Performed?:<br>
      <textarea rows=5 cols=50 name="whencont"></textarea><br>
      How Was The Study Performed?:<br>
@@ -102,12 +102,12 @@
      Integrity Of The Implementation Of The Practice/Method:<br>
      <textarea rows=5 cols=50 name="integ"></textarea><br>
      
-     <form>Confidence Rating Of Study:<br>
-    Worst<--- 1  <input type="radio" name="one" value="one" checked>  
+     Confidence Rating Of Study:<br>
+    Worst<--- 1  <input type="radio" name="two" value="one" checked>  
       2 <input type="radio" name="two" value="two" checked>
-      3 <input type="radio" name="three" value="three" checked>
-      4 <input type="radio" name="four" value="four" checked>
-      5 <input type="radio" name="five" value="five" checked>--->Best<br></form> 
+      3 <input type="radio" name="two" value="three" checked>
+      4 <input type="radio" name="two" value="four" checked>
+      5 <input type="radio" name="two" value="five" checked>--->Best<br>
      
      
    	<br><br>Research Design<br><br>
@@ -141,6 +141,8 @@
     Please click on the Submit button to submit your practice for review.
     
     <input type = "submit" value = "Submit"/>
+    
+    </form>
     
     </div>
 
