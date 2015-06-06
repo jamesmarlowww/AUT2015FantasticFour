@@ -133,6 +133,7 @@
 		$firstrun = true;
 		while($row = mysqli_fetch_array($sqlresults,MYSQLI_ASSOC)) {
 			if($firstrun) {
+<<<<<<< HEAD
 					$numrows = mysqli_num_rows($sqlresults);
 					$actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 					echo "This query gave ".$numrows." result/s would you like to save it?";
@@ -143,6 +144,19 @@
 					echo'</form>';
 					echo "<br><br>--------------------------------------------------------------------------------<br>";
 					$firstrun = false;
+=======
+				$numrows = mysqli_num_rows($sqlresults);
+				$actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+				echo "This query gave ".$numrows." result/s would you like to save it?";
+				echo'<form action = "savesearchprocess.php" method = "GET">';
+				echo'Save query as(unique): <input type="text" name="savename">';
+				echo'<input type="hidden" name = "link" value = "'.$actual_link.'">';
+				echo'<input type ="submit" value = "Save">';
+				echo'</form>';
+				echo "<br><br>--------------------------------------------------------------------------------<br>";
+				
+				$firstrun = false;
+>>>>>>> master
 			}
 		}
 			$output = "";
