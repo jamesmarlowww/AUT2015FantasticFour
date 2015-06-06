@@ -37,6 +37,7 @@
 		journalvolume VARCHAR(5),
 		journalpages VARCHAR(50),
 		articleversion VARCHAR(50),
+		year VARCHAR(50),
 		researchpractice VARCHAR(50),
 		researchdescription VARCHAR(1000),
 		results VARCHAR(1000),
@@ -67,6 +68,7 @@
 	$journalVolume = ($_POST["journvol"]);
 	$journalPages = ($_POST["journpage"]);
 	$articleVersion = ($_POST["artversion"]);
+	$year = ($_POST["year"]);
 	$researchPractice = ($_POST["engpractice"]);
 	$researchDescription = ($_POST["descresearch"]);
 	$results = ($_POST["resresearch"]);
@@ -342,6 +344,17 @@
 			$pass = false;
 		}	
 	}
+	//Validation for year
+	if (empty($year)) {
+		$output = $output . "Year is required *<br>";
+		$pass = false;
+	} else {
+		$pattern = "/[^A-Za-z0-9.,?! ]/";
+		if(preg_match($pattern, $year)) {
+			$output = $output . "Year uses unallowed values *<br>";
+			$pass = false;
+		}	
+	}
 	//Validation for Research participants
 	if (empty($participants)) {
 		$output = $output . "Research participants is required *<br>";
@@ -353,7 +366,7 @@
 			$pass = false;
 		}	
 	}
-	echo $output;
+	
 	
 	
 	//Form validation
@@ -364,8 +377,8 @@
 		//Call entry/ query
 		
 		
-			$sql_post = "INSERT INTO submittedPracticeInfo(title, author, credibilityrating, whorated, reasonforrating, researchlevel, journaltitle, journalvolume, journalpages, articleversion, researchpractice, researchdescription, results, benefits, contextwho, contextwhat, contextwhere, contextwhen, contexthow, contextwhy, integrity, confidencerating, researchquestion, researchmethod, researchmetrics, participants) 
-			VALUES('$title', '$author', '$credebilityRating', '$whoRated', '$reasonForRating', '$reasearchLevel', '$journalTitle', '$journalVolume', '$journalPages', '$articleVersion', '$researchPractice', '$researchDescription', '$results', '$benefits', '$contextWho', '$contextWhat', '$contextWhere', '$contextWhen', '$contextHow', '$contextWhy', '$integrity', '$confidenceRating', '$researchQuestion', '$researchMethod', '$researchMetrics', '$participants')";
+			$sql_post = "INSERT INTO submittedPracticeInfo(title, author, credibilityrating, whorated, reasonforrating, researchlevel, journaltitle, journalvolume, journalpages, articleversion, year, researchpractice, researchdescription, results, benefits, contextwho, contextwhat, contextwhere, contextwhen, contexthow, contextwhy, integrity, confidencerating, researchquestion, researchmethod, researchmetrics, participants) 
+			VALUES('$title', '$author', '$credebilityRating', '$whoRated', '$reasonForRating', '$reasearchLevel', '$journalTitle', '$journalVolume', '$journalPages', '$articleVersion', '$year', '$researchPractice', '$researchDescription', '$results', '$benefits', '$contextWho', '$contextWhat', '$contextWhere', '$contextWhen', '$contextHow', '$contextWhy', '$integrity', '$confidenceRating', '$researchQuestion', '$researchMethod', '$researchMetrics', '$participants')";
 		
 			
 			

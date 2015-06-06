@@ -43,6 +43,8 @@
     Reason For Credibility Rating:<br>
     <input type="text" name="reasoncred" size="50"/><br>
     
+    
+    
     <!--Research level-->
     Research Level:<br>
     <select name="researchlevel">
@@ -62,7 +64,10 @@
     Journal Page(s):<br>
     <input type="text" name="journpage" size="50"/><br>
     Article Version:<br>
-    <input type="text" name="artversion" size="50"/><br><br>
+    <input type="text" name="artversion" size="50"/><br>
+    Year of Publish:<br>
+    <input type="text" name="year" size="50"/><br>
+    <br>
     
     <!--Practice being Researched-->
     Software Engineering Practice Being Researched:<br>
